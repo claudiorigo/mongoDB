@@ -110,7 +110,7 @@ userRoutes.post('/create', (req: Request, res: Response) => {
 });
 
 //Actualizar Usuario
-userRoutes.post('/update',  verificaToken, ( req: any, res: Response ) => {
+userRoutes.post('/update',  verificaToken, ( req: any, res: Response ) => {    
 
     const user = {
         nombre : req.body.nombre || req.usuario.nombre,
@@ -143,6 +143,17 @@ userRoutes.post('/update',  verificaToken, ( req: any, res: Response ) => {
 
     });
    
+});
+
+userRoutes.get('/', [verificaToken], (req: any, res: Response) => {
+
+    const usuario = req.usuario;
+
+    res.json({
+        ok: true,
+        usuario
+    })
+
 });
 
 export default userRoutes;
